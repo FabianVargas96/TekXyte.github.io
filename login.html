@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TekXyte — Iniciar Sesión</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #2A377E; --sky: #49B1E2; --teal: #73C6CF;
+      --green: #39B4A0; --mint: #DCEFF3;
+      --font-d: 'Syne', sans-serif; --font-b: 'DM Sans', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-b);
+      background: #0d1117;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* Panel izquierdo — branding */
+    .login-brand {
+      background: linear-gradient(145deg, var(--navy) 0%, #1a2a5e 40%, #0d1117 100%);
+      padding: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .login-brand::before {
+      content: '';
+      position: absolute;
+      bottom: -150px; right: -150px;
+      width: 400px; height: 400px;
+      background: radial-gradient(var(--teal), transparent 65%);
+      opacity: 0.2;
+    }
+    .brand-logo {
+      font-family: var(--font-d);
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+    }
+    .brand-logo span { color: var(--sky); }
+    .brand-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .brand-content h2 {
+      font-family: var(--font-d);
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .brand-content h2 em {
+      font-style: normal;
+      background: linear-gradient(90deg, var(--sky), var(--teal), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .brand-content p { color: rgba(220,239,243,0.6); font-size: 0.95rem; line-height: 1.7; }
+    .brand-features { margin-top: 40px; display: flex; flex-direction: column; gap: 16px; }
+    .feat { display: flex; align-items: center; gap: 12px; font-size: 0.875rem; color: rgba(220,239,243,0.7); }
+    .feat-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+    /* Panel derecho — formulario */
+    .login-form-panel {
+      background: #12171f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 80px;
+    }
+    .login-box { width: 100%; max-width: 400px; }
+    .login-box h3 { font-family: var(--font-d); font-size: 1.75rem; font-weight: 700; color: white; margin-bottom: 8px; }
+    .login-box p  { font-size: 0.875rem; color: #94a3b0; margin-bottom: 36px; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 500; color: #94a3b0; margin-bottom: 8px; }
+    .form-group input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      padding: 14px 16px;
+      color: white;
+      font-family: var(--font-b);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus { border-color: var(--teal); background: rgba(115,198,207,0.05); }
+
+    .form-options { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; font-size: 0.82rem; }
+    .form-options a { color: var(--sky); text-decoration: none; }
+    .remember { display: flex; align-items: center; gap: 8px; color: #94a3b0; cursor: pointer; }
+    .remember input { width: auto; margin: 0; }
+
+    .btn-login {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--navy), var(--sky));
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: var(--font-b);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 4px 20px rgba(73,177,226,0.3);
+      margin-bottom: 20px;
+    }
+    .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(73,177,226,0.4); }
+    .btn-login:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
+
+    .login-divider { text-align: center; font-size: 0.8rem; color: #94a3b0; margin-bottom: 20px; }
+    .login-register { text-align: center; font-size: 0.875rem; color: #94a3b0; }
+    .login-register a { color: var(--teal); text-decoration: none; }
+    .login-back { margin-top: 24px; text-align: center; font-size: 0.8rem; }
+    .login-back a { color: #94a3b0; text-decoration: none; }
+    .login-back a:hover { color: var(--sky); }
+
+    .login-alert {
+      display: none;
+      padding: 12px 16px;
+      background: rgba(220,53,69,0.15);
+      border: 1px solid rgba(220,53,69,0.3);
+      border-radius: 8px;
+      color: #fc8181;
+      font-size: 0.85rem;
+      margin-bottom: 16px;
+    }
+    .login-alert.show { display: block; }
+
+    @media (max-width: 768px) {
+      body { grid-template-columns: 1fr; }
+      .login-brand { display: none; }
+      .login-form-panel { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Branding -->
+  <div class="login-brand">
+    <div class="brand-logo">Tek<span>Xyte</span>•</div>
+    <div class="brand-content">
+      <h2>Portal de<br /><em>Administración</em></h2>
+      <p>Gestiona proyectos, tickets, equipos y documentos desde un solo lugar.</p>
+      <div class="brand-features">
+        <div class="feat"><div class="feat-dot"></div>Dashboard en tiempo real</div>
+        <div class="feat"><div class="feat-dot"></div>Gestión de tickets N1/N2/N3</div>
+        <div class="feat"><div class="feat-dot"></div>Hojas de vida de equipos</div>
+        <div class="feat"><div class="feat-dot"></div>Generación de documentos PDF</div>
+        <div class="feat"><div class="feat-dot"></div>Control de inventario TI</div>
+      </div>
+    </div>
+    <div style="font-size:0.75rem;color:rgba(255,255,255,0.3);">© 2025 TekXyte · Bogotá, Colombia</div>
+  </div>
+
+  <!-- Formulario -->
+  <div class="login-form-panel">
+    <div class="login-box">
+      <h3>Bienvenido de nuevo</h3>
+      <p>Ingresa tus credenciales para acceder al sistema</p>
+
+      <div class="login-alert" id="loginAlert"></div>
+
+      <form id="loginForm" onsubmit="handleLogin(event)" novalidate>
+        <div class="form-group">
+          <label>Código de Proyecto</label>
+          <input type="text" id="loginProjectCode" placeholder="PROJ-0001"
+                 maxlength="20" autocomplete="off" required />
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" id="loginEmail" placeholder="usuario@tekxyte.com"
+                 autocomplete="email" required />
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="loginPassword" placeholder="••••••••"
+                 autocomplete="current-password" required />
+        </div>
+        <div class="form-options">
+          <label class="remember">
+            <input type="checkbox" id="rememberMe" /> Recordarme
+          </label>
+          <a href="#" onclick="mostrarRecuperacion();return false;">¿Olvidaste tu contraseña?</a>
+        </div>
+        <button type="submit" class="btn-login" id="loginBtn">Iniciar Sesión</button>
+      </form>
+
+      <!-- Panel recuperación (oculto por defecto) -->
+      <div id="panel-recuperacion" style="display:none;margin-top:-10px;margin-bottom:20px;padding:16px;background:rgba(115,198,207,0.08);border:1px solid rgba(115,198,207,0.2);border-radius:10px">
+        <div style="font-size:0.82rem;color:var(--teal);font-weight:600;margin-bottom:10px">🔑 Recuperar contraseña</div>
+        <input type="email" id="rec-email" placeholder="Tu correo electrónico" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 14px;color:#fff;font-family:var(--font-b);font-size:0.85rem;outline:none;margin-bottom:10px"/>
+        <div style="display:flex;gap:8px">
+          <button onclick="enviarRecuperacion()" style="flex:1;padding:10px;background:linear-gradient(135deg,var(--navy),var(--teal));color:#fff;border:none;border-radius:8px;font-family:var(--font-b);font-size:0.85rem;cursor:pointer">Enviar instrucciones</button>
+          <button onclick="ocultarRecuperacion()" style="padding:10px 14px;background:rgba(255,255,255,0.07);color:#94a3b0;border:1px solid rgba(255,255,255,0.1);border-radius:8px;font-family:var(--font-b);font-size:0.85rem;cursor:pointer">✕</button>
+        </div>
+      </div>
+
+      
+      <div class="login-register">¿No tienes cuenta? <a href="#" onclick="mostrarSolicitudAcceso();return false;">Solicitar acceso</a></div>
+
+      <!-- Panel solicitud acceso (oculto por defecto) -->
+      <div id="panel-solicitud" style="display:none;margin-top:16px;padding:16px;background:rgba(57,180,160,0.08);border:1px solid rgba(57,180,160,0.2);border-radius:10px">
+        <div style="font-size:0.82rem;color:var(--green);font-weight:600;margin-bottom:10px">📩 Solicitar acceso al sistema</div>
+        <input type="text"  id="sol-nombre" placeholder="Nombre completo" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 14px;color:#fff;font-family:var(--font-b);font-size:0.85rem;outline:none;margin-bottom:8px"/>
+        <input type="email" id="sol-email"  placeholder="Email corporativo" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 14px;color:#fff;font-family:var(--font-b);font-size:0.85rem;outline:none;margin-bottom:8px"/>
+        <input type="text"  id="sol-cargo"  placeholder="Cargo / Área" style="width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:11px 14px;color:#fff;font-family:var(--font-b);font-size:0.85rem;outline:none;margin-bottom:10px"/>
+        <div style="display:flex;gap:8px">
+          <button onclick="enviarSolicitud()" style="flex:1;padding:10px;background:linear-gradient(135deg,var(--navy),var(--green));color:#fff;border:none;border-radius:8px;font-family:var(--font-b);font-size:0.85rem;cursor:pointer">Enviar solicitud</button>
+          <button onclick="ocultarSolicitud()" style="padding:10px 14px;background:rgba(255,255,255,0.07);color:#94a3b0;border:1px solid rgba(255,255,255,0.1);border-radius:8px;font-family:var(--font-b);font-size:0.85rem;cursor:pointer">✕</button>
+        </div>
+      </div>
+
+      <div class="login-back"><a href="index.html">← Volver al sitio web</a></div>
+    </div>
+  </div>
+
+  <script>
+    /* Limpiar sesión al cargar — siempre pide credenciales */
+    localStorage.removeItem('tekxyte_token');
+    localStorage.removeItem('tekxyte_user');
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const projectCode = document.getElementById('loginProjectCode').value.trim().toUpperCase();
+      const email       = document.getElementById('loginEmail').value.trim().toLowerCase();
+      const password    = document.getElementById('loginPassword').value;
+      const btn         = document.getElementById('loginBtn');
+
+      if (!projectCode || !email || !password) { 
+        showAlert('Por favor completa todos los campos.'); 
+        return; 
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Verificando...';
+      document.getElementById('loginAlert').classList.remove('show');
+
+      /* 1. Demo mode: verificar credenciales demo */
+      const DEMO_USERS = [
+        { project_id: 1, project_code: 'PROJ-0001', email: 'admin@tekxyte.com', password: 'Admin@123', name: 'Admin TekXyte', role: 'admin' },
+        { project_id: 1, project_code: 'PROJ-0001', email: 'cmendez@tekxyte.com', password: 'Tech@2024', name: 'Carlos Méndez', role: 'tecnico' },
+        { project_id: 1, project_code: 'PROJ-0001', email: 'lperez@tekxyte.com', password: 'Tech@2024', name: 'Laura Pérez', role: 'tecnico' },
+      ];
+
+      const demoMatch = DEMO_USERS.find(u => u.email === email && u.password === password);
+      if (demoMatch) {
+        // Validar acceso al proyecto
+        const tieneAcceso = demoMatch.role === 'admin' || demoMatch.project_code.toUpperCase() === projectCode;
+        if (!tieneAcceso) {
+          showAlert('Credenciales inválidas');
+          btn.disabled = false;
+          btn.textContent = 'Iniciar Sesión';
+          return;
+        }
+
+        guardarSesion('demo-token-' + Date.now(), {
+          id: 1,
+          name: demoMatch.name, 
+          role: demoMatch.role, 
+          email: demoMatch.email,
+          project_id: demoMatch.project_id,
+          project_code: projectCode
+        });
+        return;
+      }
+
+      /* 2. Verificar contra usuarios guardados en localStorage */
+      const usuariosGuardados = JSON.parse(localStorage.getItem('tekxyte_usuarios') || '[]');
+      const usuarioMatch = usuariosGuardados.find(u => u.email === email && u.password === password && u.estado === 'activo');
+      if (usuarioMatch) {
+        // Validar acceso al proyecto
+        const tieneAcceso = usuarioMatch.rol === 'admin' || usuarioMatch.project_id === 1; // Por defecto asignado a PROJ-0001
+        if (!tieneAcceso) {
+          showAlert('Credenciales inválidas');
+          btn.disabled = false;
+          btn.textContent = 'Iniciar Sesión';
+          return;
+        }
+
+        if (projectCode === 'PROJ-0001') {
+          guardarSesion('token-' + usuarioMatch.id + '-' + Date.now(), {
+            id: usuarioMatch.id,
+            name: usuarioMatch.nombre, 
+            role: usuarioMatch.rol, 
+            email: usuarioMatch.email,
+            project_id: 1,
+            project_code: projectCode
+          });
+          return;
+        }
+      }
+
+      /* 3. Intentar API real con timeout */
+      try {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 3000);
+        
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ project_code: projectCode, email, password }),
+          signal: ctrl.signal
+        });
+        
+        clearTimeout(timer);
+        
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && data.token) { 
+            guardarSesion(data.token, data.user); 
+            return; 
+          }
+        }
+      } catch (_) { /* sin backend */ }
+
+      // Mensaje genérico de credenciales inválidas
+      showAlert('Credenciales inválidas');
+      btn.disabled = false;
+      btn.textContent = 'Iniciar Sesión';
+    }
+
+    function guardarSesion(token, userData) {
+      localStorage.setItem('tekxyte_token', token);
+      localStorage.setItem('tekxyte_user', JSON.stringify(userData));
+      window.location.replace('dashboard.html');
+    }
+
+    function showAlert(msg) {
+      const el = document.getElementById('loginAlert');
+      el.textContent = msg;
+      el.classList.add('show');
+    }
+
+    /* ── Recuperar contraseña ── */
+    function mostrarRecuperacion() {
+      document.getElementById('panel-recuperacion').style.display = '';
+      document.getElementById('panel-solicitud').style.display = 'none';
+      document.getElementById('rec-email').focus();
+    }
+    function ocultarRecuperacion() {
+      document.getElementById('panel-recuperacion').style.display = 'none';
+    }
+    function enviarRecuperacion() {
+      const email = document.getElementById('rec-email').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('rec-email').style.borderColor = '#f87171';
+        return;
+      }
+      document.getElementById('rec-email').style.borderColor = '';
+      ocultarRecuperacion();
+      // Show success message in alert (green style)
+      const el = document.getElementById('loginAlert');
+      el.style.background = 'rgba(57,180,160,0.15)';
+      el.style.borderColor = 'rgba(57,180,160,0.3)';
+      el.style.color = 'var(--green)';
+      el.textContent = `✅ Si ${email} está registrado, recibirás las instrucciones en breve.`;
+      el.classList.add('show');
+      setTimeout(() => { el.classList.remove('show'); el.style = ''; }, 5000);
+    }
+
+    /* ── Solicitar acceso ── */
+    function mostrarSolicitudAcceso() {
+      document.getElementById('panel-solicitud').style.display = '';
+      document.getElementById('panel-recuperacion').style.display = 'none';
+      document.getElementById('sol-nombre').focus();
+    }
+    function ocultarSolicitud() {
+      document.getElementById('panel-solicitud').style.display = 'none';
+    }
+    function enviarSolicitud() {
+      const nombre = document.getElementById('sol-nombre').value.trim();
+      const email  = document.getElementById('sol-email').value.trim();
+      if (!nombre || !email) {
+        if (!nombre) document.getElementById('sol-nombre').style.borderColor = '#f87171';
+        if (!email)  document.getElementById('sol-email').style.borderColor  = '#f87171';
+        return;
+      }
+      ocultarSolicitud();
+      const el = document.getElementById('loginAlert');
+      el.style.background = 'rgba(57,180,160,0.15)';
+      el.style.borderColor = 'rgba(57,180,160,0.3)';
+      el.style.color = 'var(--green)';
+      el.textContent = `✅ Solicitud enviada. El administrador revisará tu petición y te contactará a ${email}.`;
+      el.classList.add('show');
+      setTimeout(() => { el.classList.remove('show'); el.style = ''; }, 6000);
+    }
+  </script>
+</body>
+</html>

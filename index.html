@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TekXyte — Soluciones Tecnológicas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║         NAVIGATION BAR          ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span class="logo-tek">Tek</span><span class="logo-xyte">Xyte</span>
+        <span class="logo-dot"></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" class="btn-nav-login">sistema</a>
+      </div>
+      <!-- Hamburger para mobile -->
+      <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║           HERO SECTION           ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <header class="hero" id="inicio">
+    <!-- Fondo animado con partículas SVG -->
+    <div class="hero-bg">
+      <div class="hero-grid"></div>
+      <div class="hero-orb hero-orb-1"></div>
+      <div class="hero-orb hero-orb-2"></div>
+      <div class="hero-orb hero-orb-3"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Soluciones TI · Seguridad · Conectividad
+      </div>
+      <h1 class="hero-title">
+        <span class="title-line" data-delay="0">Infraestructura</span>
+        <span class="title-line title-accent" data-delay="1">Inteligente</span>
+        <span class="title-line" data-delay="2">para tu empresa</span>
+      </h1>
+      <p class="hero-sub">
+        Diseñamos, instalamos y soportamos redes de datos,<br />
+        videovigilancia IP y mesa de ayuda técnica con los<br />
+        más altos estándares del sector.
+      </p>
+      <div class="hero-ctas">
+        <a href="login.html" class="btn-primary">Ingresar al sistema →</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" data-target="150">0</span>+<p>Proyectos</p></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="98">0</span>%<p>Satisfacción</p></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num" data-target="24">0</span>/7<p>Soporte</p></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="network-diagram" id="networkDiagram"></div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║         SERVICIOS SECTION        ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="services" id="servicios">
+    <div class="section-header">
+      <span class="section-tag">Lo que hacemos</span>
+      <h2 class="section-title">Servicios<br /><em>Especializados</em></h2>
+      <p class="section-desc">Soluciones end-to-end desde el diseño hasta la operación continua de su infraestructura tecnológica.</p>
+    </div>
+
+    <!-- Tarjetas de servicios principales -->
+    <div class="services-grid">
+
+      <!-- CCTV / Videovigilancia -->
+      <article class="service-card" data-service="cctv">
+        <div class="card-glow"></div>
+        <div class="card-icon">
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/><path d="M14 24l6-6 10 6-10 6-6-6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="30" cy="24" r="3" fill="currentColor"/></svg>
+        </div>
+        <h3>CCTV / Videovigilancia IP</h3>
+        <p>Sistemas de monitoreo inteligente con cámaras IP, NVR y acceso remoto 24/7 desde cualquier dispositivo.</p>
+        <ul class="service-list">
+          <li>Diseño y consultoría</li>
+          <li>Suministro de equipos (cámaras, NVR, Switch PoE)</li>
+          <li>Canalización EMT 3/4" y 1"</li>
+          <li>Tendido de cable UTP</li>
+          <li>Terminación de puntos IP</li>
+          <li>Configuración y puesta en marcha</li>
+          <li>Almacenamiento y retención</li>
+          <li>Acceso remoto y monitoreo</li>
+          <li>Certificación y pruebas</li>
+          <li>Documentación y mantenimiento</li>
+        </ul>
+        <a href="#contacto" class="card-cta">Solicitar cotización →</a>
+      </article>
+
+      <!-- Cableado Estructurado -->
+      <article class="service-card" data-service="cabling">
+        <div class="card-glow"></div>
+        <div class="card-icon">
+          <svg viewBox="0 0 48 48" fill="none"><rect x="6" y="8" width="36" height="8" rx="2" stroke="currentColor" stroke-width="2"/><path d="M12 16v8M24 16v8M36 16v8" stroke="currentColor" stroke-width="2"/><rect x="6" y="24" width="36" height="8" rx="2" stroke="currentColor" stroke-width="2"/><path d="M12 32v8M24 32v8M36 32v8" stroke="currentColor" stroke-width="2" stroke-dasharray="2 2"/></svg>
+        </div>
+        <h3>Cableado Estructurado</h3>
+        <p>Instalación de red de datos bajo estándares TIA/EIA con certificación de cada punto y entrega documental.</p>
+        <ul class="service-list">
+          <li>Diseño y consultoría</li>
+          <li>Suministro de materiales</li>
+          <li>Canalización y ductos</li>
+          <li>Tendido de cable UTP</li>
+          <li>Terminación de puntos de red</li>
+          <li>Cuarto de telecomunicaciones</li>
+          <li>Documentación y entrega</li>
+          <li>Soporte y garantía</li>
+        </ul>
+        <a href="#contacto" class="card-cta">Solicitar cotización →</a>
+      </article>
+
+      <!-- Mesa de Ayuda -->
+      <article class="service-card" data-service="helpdesk">
+        <div class="card-glow"></div>
+        <div class="card-icon">
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="18" r="8" stroke="currentColor" stroke-width="2"/><path d="M8 40c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M32 28l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Mesa de Ayuda y Soporte Técnico</h3>
+        <p>Atención por niveles N1/N2/N3 con gestión de tickets, monitoreo proactivo y soporte en sitio.</p>
+        <ul class="service-list">
+          <li>Soporte por niveles (N1 / N2 / N3)</li>
+          <li>Canales de atención multicanal</li>
+          <li>Gestión de tickets e incidentes</li>
+          <li>Soporte a usuarios finales</li>
+          <li>Soporte a infraestructura de red</li>
+          <li>Soporte a servidores y sistemas</li>
+          <li>Soporte en sitio</li>
+          <li>Monitoreo proactivo</li>
+          <li>Seguridad básica</li>
+          <li>Reportes y gestión del servicio</li>
+          <li>Gestión de activos TI</li>
+        </ul>
+        <a href="#contacto" class="card-cta">Solicitar cotización →</a>
+      </article>
+
+    </div>
+
+    <!-- Materiales / Suministros banner -->
+    <div class="materials-banner">
+      <div class="materials-inner">
+        <div class="materials-text">
+          <h4>Suministro de Materiales</h4>
+          <p>Contamos con stock permanente de insumos certificados</p>
+        </div>
+        <div class="materials-items">
+          <div class="mat-item"><span>📦</span>Tubería EMT 3/4"</div>
+          <div class="mat-item"><span>📦</span>Tubería EMT 1"</div>
+          <div class="mat-item"><span>🔌</span>Cable UTP Cat6</div>
+          <div class="mat-item"><span>📷</span>Cámaras IP</div>
+          <div class="mat-item"><span>💾</span>NVR / DVR</div>
+          <div class="mat-item"><span>🔀</span>Switch PoE</div>
+        </div>
+          <!-- Tienda ligera: categorías y carrusel de productos -->
+          <div class="materials-shop">
+            <div class="materials-categories" role="tablist">
+              <button class="mat-cat active" data-cat="componentes">Componentes</button>
+              <button class="mat-cat" data-cat="perifericos">Periféricos</button>
+              <button class="mat-cat" data-cat="pantallas">Pantallas</button>
+            </div>
+
+            <div class="materials-carousel">
+              <button class="carousel-nav prev" aria-label="Anterior">‹</button>
+              <div class="carousel-track" id="carouselTrack">
+                <!-- Slides inyectadas por JS -->
+              </div>
+              <button class="carousel-nav next" aria-label="Siguiente">›</button>
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║         NOSOTROS SECTION         ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="about" id="nosotros">
+    <div class="about-layout">
+      <div class="about-visual">
+        <div class="about-card-stack">
+          <div class="about-card about-card-back">
+            <div class="acard-label">Uptime</div>
+            <div class="acard-value">99.9%</div>
+          </div>
+          <div class="about-card about-card-mid">
+            <div class="acard-label">Tickets resueltos</div>
+            <div class="acard-value">2,400+</div>
+          </div>
+          <div class="about-card about-card-front">
+            <div class="acard-icon">⚡</div>
+            <div class="acard-label">Tiempo de respuesta</div>
+            <div class="acard-value">&lt; 2h</div>
+            <div class="acard-sub">Nivel N1</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-tag">Quiénes somos</span>
+        <h2 class="section-title">Tecnología que<br /><em>conecta y protege</em></h2>
+        <p>TekXyte es una empresa de servicios tecnológicos especializada en infraestructura de redes, videovigilancia IP y soporte técnico. Nuestro equipo certificado garantiza soluciones robustas y escalables adaptadas a cada cliente.</p>
+        <div class="about-values">
+          <div class="value-item"><span class="value-icon">🛡️</span><div><strong>Confiabilidad</strong><p>Infraestructura redundante y documentada</p></div></div>
+          <div class="value-item"><span class="value-icon">🚀</span><div><strong>Agilidad</strong><p>Respuesta rápida y ejecución eficiente</p></div></div>
+          <div class="value-item"><span class="value-icon">📋</span><div><strong>Documentación</strong><p>Entrega completa de planos y manuales</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║         CONTACTO SECTION         ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <section class="contact" id="contacto">
+    <div class="contact-layout">
+      <div class="contact-info">
+        <span class="section-tag">Hablemos</span>
+        <h2 class="section-title">¿Listo para<br /><em>conectar?</em></h2>
+        <p>Cuéntanos tu proyecto y nuestro equipo te responderá en menos de 2 horas hábiles con una propuesta personalizada.</p>
+        <div class="contact-items">
+          <div class="contact-item"><span>📞</span><div><strong>Teléfono</strong><p>+57 (601) 000-0000</p></div></div>
+          <div class="contact-item"><span>✉️</span><div><strong>Correo</strong><p>info@tekxyte.com</p></div></div>
+          <div class="contact-item"><span>📍</span><div><strong>Ciudad</strong><p>Bogotá, Colombia</p></div></div>
+        </div>
+      </div>
+      <form class="contact-form" id="contactForm" onsubmit="submitContact(event)">
+        <div class="form-group">
+          <label>Nombre completo *</label>
+          <input type="text" name="nombre" required placeholder="Tu nombre" />
+        </div>
+        <div class="form-group">
+          <label>Empresa</label>
+          <input type="text" name="empresa" placeholder="Tu empresa" />
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico *</label>
+          <input type="email" name="email" required placeholder="tu@correo.com" />
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" name="telefono" placeholder="+57 300 000 0000" />
+        </div>
+        <div class="form-group">
+          <label>Servicio de interés</label>
+          <select name="servicio">
+            <option value="">Seleccionar...</option>
+            <option>CCTV / Videovigilancia IP</option>
+            <option>Cableado Estructurado</option>
+            <option>Mesa de Ayuda y Soporte Técnico</option>
+            <option>Todos los servicios</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje *</label>
+          <textarea name="mensaje" rows="4" required placeholder="Cuéntanos tu proyecto o necesidad..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary btn-full">Enviar solicitud →</button>
+        <div class="form-success" id="formSuccess">✅ ¡Mensaje enviado! Te contactaremos pronto.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════╗ -->
+  <!-- ║            FOOTER                ║ -->
+  <!-- ╚══════════════════════════════════╝ -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="nav-logo"><span class="logo-tek">Tek</span><span class="logo-xyte">Xyte</span><span class="logo-dot"></span></div>
+        <p>Infraestructura tecnológica confiable para empresas que no pueden detenerse.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Servicios</h5>
+          <ul>
+            <li><a href="#servicios">Videovigilancia IP</a></li>
+            <li><a href="#servicios">Cableado Estructurado</a></li>
+            <li><a href="#servicios">Mesa de Ayuda</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Empresa</h5>
+          <ul>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Sistema</h5>
+          <ul>
+            <li><a href="login.html">Iniciar Sesión</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 TekXyte. Todos los derechos reservados.</p>
+      <p>Diseñado con estándares de seguridad OWASP · JWT Auth</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
