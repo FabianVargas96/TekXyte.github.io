@@ -278,26 +278,25 @@
       const usuariosGuardados = JSON.parse(localStorage.getItem('tekxyte_usuarios') || '[]');
       const usuarioMatch = usuariosGuardados.find(u => u.email === email && u.password === password && u.estado === 'activo');
       if (usuarioMatch) {
-        // Validar acceso al proyecto
-        const tieneAcceso = usuarioMatch.rol === 'admin' || usuarioMatch.project_id === 1; // Por defecto asignado a PROJ-0001
-        if (!tieneAcceso) {
+        const usuarioProjectId = Number(usuarioMatch.project_id || 1);
+        const usuarioProjectCode = usuarioMatch.project_code || `PROJ-${String(usuarioProjectId).padStart(4, '0')}`;
+        // El código ingresado debe coincidir con el proyecto asignado al usuario.
+        if (usuarioProjectCode !== projectCode) {
           showAlert('Credenciales inválidas');
           btn.disabled = false;
           btn.textContent = 'Iniciar Sesión';
           return;
         }
 
-        if (projectCode === 'PROJ-0001') {
-          guardarSesion('token-' + usuarioMatch.id + '-' + Date.now(), {
-            id: usuarioMatch.id,
-            name: usuarioMatch.nombre, 
-            role: usuarioMatch.rol, 
-            email: usuarioMatch.email,
-            project_id: 1,
-            project_code: projectCode
-          });
-          return;
-        }
+        guardarSesion('token-' + usuarioMatch.id + '-' + Date.now(), {
+          id: usuarioMatch.id,
+          name: usuarioMatch.nombre,
+          role: usuarioMatch.rol,
+          email: usuarioMatch.email,
+          project_id: usuarioProjectId,
+          project_code: usuarioProjectCode
+        });
+        return;
       }
 
       /* 3. Intentar API real con timeout */
