@@ -3263,6 +3263,9 @@
     const pass   = document.getElementById('usr-pass').value;
     const idx    = parseInt(document.getElementById('usr-edit-idx').value);
     const esNuevo = idx === -1;
+    const sesion = JSON.parse(localStorage.getItem('tekxyte_user') || '{}');
+    const projectId = Number(sesion.project_id || 1);
+    const projectCode = sesion.project_code || `PROJ-${String(projectId).padStart(4, '0')}`;
 
     if (!nombre) { showToast('El nombre es obligatorio', 'error'); return; }
     if (!email || !email.includes('@')) { showToast('Email inválido', 'error'); return; }
@@ -3276,7 +3279,9 @@
       rol:      document.getElementById('usr-rol').value,
       estado:   document.getElementById('usr-estado').value,
       acceso:   esNuevo ? 'Nuevo' : dbUsuarios[idx].acceso,
-      id:       esNuevo ? usrNextId : dbUsuarios[idx].id
+      id:       esNuevo ? usrNextId : dbUsuarios[idx].id,
+      project_id: esNuevo ? projectId : (dbUsuarios[idx].project_id || projectId),
+      project_code: esNuevo ? projectCode : (dbUsuarios[idx].project_code || projectCode)
     };
 
     if (esNuevo) {
